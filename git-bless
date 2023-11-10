@@ -29,11 +29,19 @@ fi
 
 # complex science-based stuff for it to sound legit
 blessings_needed=$(echo "l(${changes_count})/l(2)"| bc -l)
+
+# any change deserves some amount of blessing
+if [ $(printf "%.${2:-0}f" $blessings_needed) -eq 0 ];
+then
+    blessings_needed=`echo "scale=4; $(( ($RANDOM % 1000) + 1)) / 1000" | bc`
+fi
+
+formatted_blessings_needed=`printf "%1.4f" $blessings_needed`
 rounded_blessings=$(printf "%.${2:-0}f" $blessings_needed)
 min_blessings=$(( 1 > $rounded_blessings ? 1 : $rounded_blessings ))
 
 echo "✝ Blessing $changes_count changed files."
-echo "✝ Estimated number of blessings required: ${rounded_blessings}."
+echo "✝ Estimated number of blessings required: ${formatted_blessings_needed}."
 echo "✝ Blessing ${min_blessings} times to be safe."
 
 # make it seem customized
@@ -54,7 +62,7 @@ do
 done
 
 
-echo "✝ Done blessing:"
+echo "✝ Done. The following changes have been blessed:"
 for f in $changes_names
 do
     echo "\t✝ $f"
