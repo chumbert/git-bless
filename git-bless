@@ -35,7 +35,7 @@ done
 
 echo ""
 
-for i in `seq 0 $rounded_blessings`
+for i in `seq 1 $rounded_blessings`
 do
     echo "✝✝✝ ${blessings[$(($RANDOM % $blessings_count))]} ✝✝✝"
     echo ""
