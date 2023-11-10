@@ -28,8 +28,9 @@ Here's a sneak peek of the git-bless roadmap:
 
 * Embedded proof-of-blessing in commits,
 * Branches and tags blessing,
-* Bless your artifacts right in time by using our GitHub action for your packaging and deployment.
-* Blessings for culture not founded on christianity (contributions welcome).
+* Bless your artifacts right in time by using our GitHub action for your packaging and deployment,
+* Blessings for culture not founded on christianity (contributions welcome),
+* "Regression blessing" to make sure new changes don't break existing blessed features.
 
 # Instructions
 
