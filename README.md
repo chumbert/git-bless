@@ -55,7 +55,7 @@ Example run:
 ```
 ❯ git bless
 ✝ Blessing        3 changed files.
-✝ Estimated number of blessings required: 1.58496250072115618146.
+✝ Estimated number of blessings required: 1.5849
 ✝ Blessing 2 times to be safe.
 ✝ Blessing:
 	complex_script_for_production.sh
