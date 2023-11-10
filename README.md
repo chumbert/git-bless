@@ -52,6 +52,11 @@ Voila ! You can now stage your changes and bless them before committing by using
 git bless
 ```
 
+If you're running MacOS and want to benefit from hearing the blessings use `-v` flag:
+```bash
+git bless -v
+```
+
 Example run:
 ```
 ❯ git bless

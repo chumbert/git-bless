@@ -57,8 +57,13 @@ for i in `seq 1 $min_blessings`
 do
     # need to make it look like hard work
     sleep 0.4
-    echo "✝✝✝ ${blessings[$(($RANDOM % $blessings_count))]} ✝✝✝"
+    blessing=${blessings[$(($RANDOM % $blessings_count))]}
+    echo "✝✝✝ $blessing ✝✝✝"
     echo ""
+    if [ ! -z "${1}" ] && [[ "-v" -eq "${1}" ]] 
+    then
+        say $blessing
+    fi
 done
 
 
