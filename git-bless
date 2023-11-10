@@ -18,13 +18,23 @@ currentBranch=$(git symbolic-ref --short -q HEAD)
 
 changes_names=$(git diff --cached --name-only --numstat)
 changes_count=$(git diff --cached --numstat | wc -l)
+
+if [ $changes_count -eq 0 ];
+then
+    echo "✝ Nothing to bless. Have a blessing for your future code:"
+    sleep 0.4
+    echo "✝✝✝ ${blessings[$(($RANDOM % $blessings_count))]} ✝✝✝"
+    exit 0
+fi
+
+# complex science-based stuff for it to sound legit
 blessings_needed=$(echo "l(${changes_count})/l(2)"| bc -l)
 rounded_blessings=$(printf "%.${2:-0}f" $blessings_needed)
+min_blessings=$(( 1 > $rounded_blessings ? 1 : $rounded_blessings ))
 
-# complex science-math stuff for it to make sense
 echo "✝ Blessing $changes_count changed files."
-echo "✝ Estimated number of blessings required: ${blessings_needed}."
-echo "✝ Blessing ${rounded_blessings} times to be safe."
+echo "✝ Estimated number of blessings required: ${rounded_blessings}."
+echo "✝ Blessing ${min_blessings} times to be safe."
 
 # make it seem customized
 echo "✝ Blessing: "
@@ -35,12 +45,12 @@ done
 
 echo ""
 
-for i in `seq 1 $rounded_blessings`
+for i in `seq 1 $min_blessings`
 do
-    echo "✝✝✝ ${blessings[$(($RANDOM % $blessings_count))]} ✝✝✝"
-    echo ""
     # need to make it look like hard work
     sleep 0.4
+    echo "✝✝✝ ${blessings[$(($RANDOM % $blessings_count))]} ✝✝✝"
+    echo ""
 done
 
 
