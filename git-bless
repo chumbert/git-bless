@@ -62,7 +62,7 @@ do
     echo ""
     if [ ! -z "${1}" ] && [[ "-v" -eq "${1}" ]] 
     then
-        say $blessing
+        say -v Cellos $blessing
     fi
 done
 
