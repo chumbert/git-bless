@@ -1,0 +1,54 @@
+#!/bin/sh
+
+blessings=(
+"In nomine Patris, et Filii, et Spiritus Sancti, sub divinae tutelae potentia te ponimus. Custos angelorum te defendat et custodiat, teque ab omni malo tueatur. Amen."
+"Dominus benedicat et custodiat te; Dominus ostendat faciem suam tibi et misereatur tui; Dominus convertat vultum suum ad te et det tibi pacem. Amen."
+"Sub alis Altissimi te custodiat et protegat. Amen."
+"Per intercessionem Sanctae Mariae, Matris Dei, te custodiat et protegat. Amen."
+"Per intercessionem Sancti Michaelis Archangeli, defendat te in proelio, contra nequitiam et insidias diaboli esto praesidium. Amen."
+"Angele Dei, qui custos es mei, me tibi commissum pietate superna, illumina, custodi, rege, et guberna. Amen."
+"Sub umbra alarum tuorum, Domine, protege nos. Amen."
+"Benedicat et custodiat te Dominus omnipotens, qui fecit caelum et terram. Amen."
+"Ad te confugimus, sancta Dei Genetrix. Nostras deprecationes ne despicias in necessitatibus, sed a periculis cunctis libera nos semper, Virgo gloriosa et benedicta. Amen."
+"Sanctus Spiritus, veni in auxilium nostrum. Emitte caelitus lucis tuae radium. Amen."
+)
+blessings_count=${#blessings[@]}
+
+currentBranch=$(git symbolic-ref --short -q HEAD)
+
+changes_names=$(git diff --cached --name-only --numstat)
+changes_count=$(git diff --cached --numstat | wc -l)
+blessings_needed=$(echo "l(${changes_count})/l(2)"| bc -l)
+rounded_blessings=$(printf "%.${2:-0}f" $blessings_needed)
+
+# complex science-math stuff for it to make sense
+echo "✝ Blessing $changes_count changed files."
+echo "✝ Estimated number of blessings required: ${blessings_needed}."
+echo "✝ Blessing ${rounded_blessings} times to be safe."
+
+# make it seem customized
+echo "✝ Blessing: "
+for f in $changes_names
+do
+    echo "\t$f"
+done
+
+echo ""
+
+for i in `seq 0 $rounded_blessings`
+do
+    echo "✝✝✝ ${blessings[$(($RANDOM % $blessings_count))]} ✝✝✝"
+    echo ""
+    # need to make it look like hard work
+    sleep 0.4
+done
+
+
+echo "✝ Done blessing:"
+for f in $changes_names
+do
+    echo "\t✝ $f"
+done
+
+# call to action
+echo "✝ You can now safely commit these files."
