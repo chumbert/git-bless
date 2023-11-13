@@ -47,12 +47,17 @@ echo "export PATH=\$PATH:$(pwd)/git-bless"  >> ~/.zshrc
 source ~/.zshrc
 ```
 
-Voila ! You can now stage your changes and bless them before committing by using:
+Voila ! You can now stage your changes
+```bash
+git add <changes>
+```
+
+and bless them before committing by using:
 ```bash
 git bless
 ```
 
-If you're running MacOS and want to benefit from hearing the blessings use `-v` flag:
+**If you're running MacOS and want to benefit from hearing the blessings use `-v` flag:**
 ```bash
 git bless -v
 ```
